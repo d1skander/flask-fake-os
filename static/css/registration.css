@@ -1,0 +1,151 @@
+/* Основные настройки body для атмосферы */
+body {
+    background: url('/static/images/win7.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Эффект Стеклянного Окна (Aero Glass) */
+form {
+    /* 1. Делаем фон очень прозрачным */
+    background: rgba(255, 255, 255, 0.15); 
+    
+    /* 2. ГЛАВНОЕ: Размытие того, что ПОД формой (эффект матового стекла) */
+    backdrop-filter: blur(20px) saturate(150%); 
+    -webkit-backdrop-filter: blur(20px) saturate(150%); /* Поддержка Safari */
+
+    /* 3. Тонкая белая рамка сверху имитирует блик на ребре стекла */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.6); 
+    
+    /* 4. Мягкое скругление углов, как в Win7 */
+    border-radius: 12px; 
+    
+    /* 5. Сложная тень: внешняя черная и внутренняя белая (эффект объема) */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 
+                inset 0 0 15px rgba(255, 255, 255, 0.1);
+
+    padding: 35px;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Стилизация заголовков внутри стекла */
+label {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 14px;
+    font-weight: 500;
+    /* Тень под текстом, чтобы он читался на светлых обоях */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Поля ввода тоже сделаем чуть "стеклянными" */
+input {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.85); /* Почти непрозрачные, для удобства чтения */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Синее свечение при клике — фишка Aero */
+input:focus {
+    outline: none;
+    background: #fff;
+    border-color: #0078d7;
+    box-shadow: 0 0 8px rgba(0, 120, 215, 0.5);
+}
+
+/* Стеклянная кнопка с градиентом */
+button {
+    margin-top: 10px;
+    padding: 12px;
+    /* Градиент от светлого к темному, как на кнопках "Пуск" и в окнах */
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 0.5) 0%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 100%);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+
+/* Стилизация ссылки-кнопки в углу */
+.redirect_to_auth {
+    /* Позиционирование: фиксируем справа внизу */
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    
+    /* Оформление текста */
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+
+    /* Эффект Aero Glass (стекло) */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Границы и скругление */
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5); /* Блик сверху */
+    border-radius: 5px;
+    
+    /* Плавность переходов */
+    transition: all 0.3s ease;
+    
+    /* Чтобы кнопка была над всеми элементами */
+    z-index: 1000;
+    
+    /* Flex для центровки текста, если добавишь иконку */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Эффект при наведении (как активное окно в Win7) */
+.redirect_to_auth:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px); /* Легкое всплытие */
+}
+
+/* Адаптивность: на маленьких экранах уменьшаем отступы */
+@media (max-width: 480px) {
+    form {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .redirect_to_auth {
+        right: 10px;
+        bottom: 10px;
+        padding: 12px 20px; /* Увеличиваем область нажатия для пальца */
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.2); /* На мобилках делаем чуть заметнее */
+    }
+}

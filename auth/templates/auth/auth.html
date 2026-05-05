@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/registration.css') }}>
+    <title>Авторизация</title>
+</head>
+<body>
+    <form method="post" action="{{ url_for('auth_pages.auth_page') }}">
+        {{ form.hidden_tag() }}
+        {{ form.username.name.label }} {{ form.username }}
+        {{ form.password.name.label }} {{ form.password }}
+        <button type="submit">Войти</button>
+    </form>
+
+    {% if form.errors %}
+        <ul class="errors">
+            {% for err in form.errors %}
+            <li>{{ err }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
