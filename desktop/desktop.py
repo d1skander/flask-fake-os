@@ -1,4 +1,9 @@
 from flask import Blueprint, render_template, session, redirect, url_for, request
+from sqlalchemy import select
+from models.user import db
+from models.chat import MessageInChat
+from forms.chat import ChatForm
+
 
 
 desktop_blueprint = Blueprint("desktop_pages", __name__,
@@ -7,9 +12,32 @@ desktop_blueprint = Blueprint("desktop_pages", __name__,
 
 @desktop_blueprint.route("/main")
 def main_desktop():
-    return render_template("main.html")
+    if "username" in session:
+        return render_template("main.html")
+    return redirect(url_for("auth_pages.auth_page"))
 
 
 @desktop_blueprint.route("/win", methods=["GET", "POST"])
 def profile_desktop():
-    return render_template("win.html")
+    if "username" in session:
+        user = session["username"]
+        return render_template("win.html", user=user)
+    return redirect(url_for("auth_pages.auth_page"))
+
+
+@desktop_blueprint.route("/chat", methods=["GET", "POST"])
+def chat_desktop():
+    form = ChatForm()
+    if "username" in session:
+        user = session["username"]
+        messages = db.session.execute(select(MessageInChat)).scalars().all()
+        if form.validate_on_submit():
+            message = request.form["message"]
+            request_message = MessageInChat(
+                username=user,
+                message = message
+            )
+            db.session.add(request_message)
+            db.session.commit()
+        return render_template("chat.html", messages=messages, form=form)
+    return redirect(url_for("auth_pages.auth_page"))

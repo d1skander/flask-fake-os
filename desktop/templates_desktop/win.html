@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{ url_for('static', filename='css/profile.css') }}>
     <title>Параметры</title>
 </head>
 <body>
-    
+    <div id="profile">
+        <p>🙂</p>
+    <h1>{{ user }} </h1>
+    <details>
+        <summary>
+            Редактировать профиль
+        </summary>
+
+        <form action="{{ url_for('auth_pages.delete_page') }}">
+            <button id="exit", type="submit">Удалить</button>
+        </form>
+
+        <form action="{{ url_for('auth_pages.out_page') }}">
+            <button id="exit", type="submit">Выйти</button>
+        </form>
+    </details>
+    </div>
 </body>
 </html>

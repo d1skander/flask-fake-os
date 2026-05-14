@@ -6,7 +6,7 @@
     <link rel="stylesheet" href={{ url_for('static', filename='css/desktop.css') }}>
     <title>Рабочий стол</title>
 </head>
-<a href="sdsd">
+<a href="{{ url_for('desktop_pages.profile_desktop') }}">
     <button>
         <img src="{{ url_for('static', filename='images/icons8-логотип-windows-xp-48.png') }}"></img>
     </button>
@@ -18,10 +18,11 @@
     <button>
         <img src="{{ url_for('static', filename='images/icons8-консоль-96.png') }}"></img>
     </button>
-
+<a href="{{ url_for('desktop_pages.chat_desktop') }}">
     <button>
         <img src="{{ url_for('static', filename='images/icons8-chat-message-96.png') }}"></img>
     </button>
+</a>
 
     <button>
         <img src="{{ url_for('static', filename='images/icons8-chatbot-96.png') }}"></img>

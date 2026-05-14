@@ -7,6 +7,7 @@ from os import getenv
 from models.user import db
 from admin.admin import admin_setup
 from flask_babel import Babel
+from flask_bcrypt import Bcrypt
 
 
 load_dotenv()
@@ -17,6 +18,7 @@ babel=Babel(app)
 csrf=CSRFProtect(app)
 app.secret_key = getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+bcrypt = Bcrypt(app)
 db.init_app(app)
 
 
