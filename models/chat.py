@@ -1,6 +1,6 @@
 from models.user import Base, db
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Column, String, DateTime
+from sqlalchemy import Column, DateTime
 from sqlalchemy.sql import func
 
 

@@ -56,8 +56,7 @@ button img {
 }
 
 /* Если захочешь добавить подписи под иконки в будущем */
-button::after {
-    content: "Программа"; /* Это заглушка */
+button::after {/* Это заглушка */
     color: white;
     font-size: 12px;
     margin-top: 5px;
@@ -67,6 +66,57 @@ button::after {
     white-space: nowrap;
     width: 100%;
 }
+
+
+#bottom_panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to bottom, #1e528e 0%, #266bc0 10%, #1e569f 30%, #194a89 50%, #13396c 85%, #184179 100%);
+    border-top: 1px solid #57a1e7;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 -2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+#bottom_panel a, 
+#bottom_panel button {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#bottom_panel button {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%);
+    border: 1px solid transparent;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 0 15px;
+    cursor: pointer;
+    transition: background 0.1s, box-shadow 0.1s;
+}
+
+#bottom_panel button:hover {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 100%);
+    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+#bottom_panel button:active {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+#bottom_panel img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+}
+
 
 
 @media (max-width: 480px) {

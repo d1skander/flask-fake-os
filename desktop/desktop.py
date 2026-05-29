@@ -3,7 +3,7 @@ from sqlalchemy import select
 from models.user import db
 from models.chat import MessageInChat
 from forms.chat import ChatForm
-
+from forms.terminal import TerminalForm
 
 
 desktop_blueprint = Blueprint("desktop_pages", __name__,
@@ -40,4 +40,16 @@ def chat_desktop():
             db.session.add(request_message)
             db.session.commit()
         return render_template("chat.html", messages=messages, form=form)
+    return redirect(url_for("auth_pages.auth_page"))
+
+
+@desktop_blueprint.route("/terminal", methods=["GET", "POST"])
+def terminal_desktop():
+    form = TerminalForm()
+    if "username" in session:
+        messages = db.session.execute(select(MessageInChat)).scalars().all()
+        if form.validate_on_submit():
+            message = "Разработчику лень изучать фронтенд"
+            return render_template("terminal.html", messages=messages, form=form)
+        return render_template("terminal.html", messages=messages, form=form)
     return redirect(url_for("auth_pages.auth_page"))
